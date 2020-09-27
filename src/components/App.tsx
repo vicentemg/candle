@@ -1,7 +1,10 @@
 // @flow
 import * as React from 'react';
+type Props = {
+    buttonName: string
+}
 
-function App() {
+function App(props: Props) {
     const [count, setCount] = React.useState(0);
     return (
         <div>

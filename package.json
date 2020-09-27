@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open",
     "semantic-release": "semantic-release",
-    "flow": "flow",
-    "build": "tsc"
+    "flow": "flow"
   },
   "repository": {
     "type": "git",
