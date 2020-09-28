@@ -14,3 +14,5 @@ jobs:
       - name: Install dependencies
         run: npm install 
       - uses: ./.github/actions/semantic-release
+        with: 
+          gh-token: ${{ secrets.GH_TOKEN }}
