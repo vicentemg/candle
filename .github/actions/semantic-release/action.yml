@@ -15,12 +15,12 @@ runs:
         echo ::set-output name=match::true
         fi
     - name: semantic release 
+      if: steps.check-branch.outputs.match == 'true'
       id: semantic-release
       shell: bash
       env: 
         GITHUB_TOKEN: ${{ inputs.gh-token }}
       run: echo coincide ${{steps.check-branch.outputs.match}}
-      if: steps.check-branch.outputs.match == 'true'
         # - name: Semantic release
 #         env:
 #           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
