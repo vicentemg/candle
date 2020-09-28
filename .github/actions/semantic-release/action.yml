@@ -1,5 +1,5 @@
 name: 'Semanti Release'
-description: 'Greet someone'
+description: 'Crea los tags correspondientes (SemVer)'
 inputs: 
   gh-token: 
     description: token git hub
@@ -9,6 +9,7 @@ runs:
   steps: 
     - name: check branch
       id: check-branch
+      shell: bash
       run: |
         if [[ ${GITHUB_REF##*/} =~ ^((development)|(hotfix.*))$ ]]; then
         echo ::set-output name=match::true
