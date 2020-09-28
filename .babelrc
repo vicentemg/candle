@@ -1,8 +1,14 @@
+// This caches the Babel config
+// api.cache.using(() => process.env.NODE_ENV);
 {
     "presets": [
         "@babel/env",
         "@babel/preset-react",
         "@babel/preset-typescript",
         "@babel/preset-flow"
+    ],
+    "plugins": [
+        "react-refresh/babel"
     ]
+    // ...(!api.env('production') && { plugins: ['react-refresh/babel'] }),
 }

@@ -1,0 +1,14 @@
+name: 'Semanti Release'
+description: 'Greet someone'
+runs:
+  using: "composite"
+  steps: 
+    - uses: ./.github/actions/branch-name
+    - name: semantic release
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: echo $GITHUB_TOKEN $CI_COMMIT_BRANCH    
+# - name: Semantic release
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+#         run: npx semantic-release

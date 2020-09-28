@@ -1,0 +1,9 @@
+name: 'Setting env ${CI_COMMIT_BRANCH} up'
+description: 'Set env variable ${CI_COMMIT_BRANCH}'
+runs:
+  using: "composite"
+  steps: 
+    - run: |
+        echo "::set-env name=CI_COMMIT_BRANCH::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
+        echo branch actual: $CI_COMMIT_BRANCH
+      shell: bash

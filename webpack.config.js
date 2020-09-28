@@ -1,19 +1,19 @@
 const path = require("path");
-const webpack = require("webpack");
+// const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-  },
   plugins: [
     new HtmlWebpackPlugin({
-      template:"./src/index.html"
+      template: "./public/index.html",
+      filename: './index.html'
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new ReactRefreshPlugin()
+    // isDevelopment && new ReactRefreshWebpackPlugin(),
   ],
   entry: './src/index.tsx',
   module: {
