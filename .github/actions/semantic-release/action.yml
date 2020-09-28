@@ -3,7 +3,9 @@ description: 'Greet someone'
 runs:
   using: "composite"
   steps: 
-    - name: semantic release
+    - name: semantic release 
+      id: semantic-release
+      shell: bash
       env: 
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       run: echo $GITHUB_TOKEN $CI_COMMIT_BRANCH    
