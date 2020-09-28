@@ -3,7 +3,9 @@ description: 'Set env variable ${CI_COMMIT_BRANCH}'
 runs:
   using: "composite"
   steps: 
-    - run: |
-        echo "::set-env name=CI_COMMIT_BRANCH::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
+    - name: Extract branch name 
+      id: extract-branch-name
+      run: |
+        echo "##[set-env name=CI_COMMIT_BRANCH;]$(echo ${GITHUB_REF#refs/heads/})"
         echo $(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')
       shell: bash
