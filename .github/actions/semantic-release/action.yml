@@ -8,7 +8,7 @@ runs:
       shell: bash
       env: 
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      run: echo $GITHUB_TOKEN $CI_COMMIT_BRANCH    
+      run: echo $GITHUB_TOKEN ${GITHUB_REF##*/}    
 # - name: Semantic release
 #         env:
 #           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
