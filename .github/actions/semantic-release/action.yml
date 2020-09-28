@@ -1,26 +1,18 @@
 name: 'Semanti Release'
-description: 'Crea los tags correspondientes (SemVer)'
+description: 'Automates package release: detrmining the next version number'
 inputs: 
   gh-token: 
     description: token git hub
     required: true
 runs:
   using: "composite"
-  steps: 
-    - name: check branch
-      id: check-branch
-      shell: bash
-      run: |
-        if [[ ${GITHUB_REF##*/} =~ ^((+([0-9])?(.{+([0-9]),x}).x)|(master)|(beta))$ ]]; then
-        echo ::set-output name=match::true
-        fi
+  steps:
     - name: semantic release 
       id: semantic-release
       shell: bash
       env: 
         GITHUB_TOKEN: ${{ inputs.gh-token }}
       run: echo coincide ${{steps.check-branch.outputs.match}}
-      if: ${{steps.check-branch.outputs.match}}
         # - name: Semantic release
 #         env:
 #           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

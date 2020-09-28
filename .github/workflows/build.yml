@@ -13,6 +13,8 @@ jobs:
           node-version: 12
       - name: Install dependencies
         run: npm install 
+      - uses: ./.github/actions/sematic-release-branch-checker
       - uses: ./.github/actions/semantic-release
         with: 
           gh-token: ${{ secrets.GH_TOKEN }}
+        if: ${{steps.semantic-release-branch-checker.outputs.match}}
