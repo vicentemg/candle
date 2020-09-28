@@ -5,5 +5,5 @@ runs:
   steps: 
     - run: |
         echo "::set-env name=CI_COMMIT_BRANCH::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
-        echo branch actual: $CI_COMMIT_BRANCH
+        echo $(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')
       shell: bash
