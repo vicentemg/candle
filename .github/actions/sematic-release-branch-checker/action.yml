@@ -1,12 +1,5 @@
 name: 'Branch Checker'
 description: 'Verfies if it is properly run semantic release in current branch'
-inputs: 
-  gh-token: 
-    description: 
-    required: true
-outputs: 
-  match: 
-    match: false
 runs:
   using: "composite"
   steps: 
