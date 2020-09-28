@@ -3,7 +3,6 @@ description: 'Greet someone'
 runs:
   using: "composite"
   steps: 
-    - uses: ./.github/actions/branch-name
     - name: semantic release
       env: 
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
