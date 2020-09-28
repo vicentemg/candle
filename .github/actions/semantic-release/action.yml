@@ -12,8 +12,4 @@ runs:
       shell: bash
       env: 
         GITHUB_TOKEN: ${{ inputs.gh-token }}
-      run: echo coincide ${{steps.check-branch.outputs.match}}
-        # - name: Semantic release
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-#         run: npx semantic-release
+      run: npx semantic-release
