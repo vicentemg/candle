@@ -2,12 +2,12 @@ name: 'Semanti Release'
 description: 'Greet someone'
 runs:
   using: "composite"
+  env: 
+    GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
   steps: 
     - name: semantic release 
       id: semantic-release
       shell: bash
-      env: 
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       run: echo $GITHUB_TOKEN ${GITHUB_REF##*/}    
 # - name: Semantic release
 #         env:
