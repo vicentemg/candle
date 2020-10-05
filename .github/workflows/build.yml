@@ -12,11 +12,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Cache dependencies
+      - name: Cache node modules
         uses: actions/cache@v2
-        path: | 
-          ~/.npm
-        key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+        env:
+          cache-name: cache-node-modules
+        with:
+        path: ~/.npm
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
       - name: Install dependencies
         run: npm install
       - name: test react app
