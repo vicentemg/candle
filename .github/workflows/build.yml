@@ -22,7 +22,7 @@ jobs:
         run: npm install
       - name: test react app
         run: npm run test
-        - name: Versioning
+      - name: Versioning
         uses: ./.github/actions/semantic-release
         if: ${{steps.semantic-release-branch-checker.outputs.match}}
         with: 
