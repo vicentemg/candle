@@ -37,6 +37,10 @@ jobs:
     if: ${{needs.Build.outputs.should_run_}}
     runs-on: ubuntu-latest
     steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
       - name: Versioning
         uses: ./.github/actions/semantic-release
         with: 
