@@ -26,6 +26,10 @@ jobs:
     needs: [Build]
     runs-on: ubuntu-latest
     steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
       - name: test react app
         run: npm run test
   Versioning:
