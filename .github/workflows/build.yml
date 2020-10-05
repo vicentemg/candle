@@ -14,10 +14,8 @@ jobs:
           node-version: 12
       - name: Cache dependencies
         uses: actions/cache@v2
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+        path: ~/.npm
+        key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm install
       - name: test react app
