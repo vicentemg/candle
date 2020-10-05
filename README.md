@@ -1,1 +1,6 @@
-# candle
+ # NugetMG Extension for VS Code
+ [![](https://github.com/vicentemg/nugetmg/workflows/Happy%20Extension/badge.svg?branch=development)](https://github.com/vicentemg/nugetmg/actions?query=workflow%3A%22Happy+Extension%22+branch%3Adevelopment) 
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
+
+ ### NugetMG is an extension that enables you to manage nuget packages in your projects

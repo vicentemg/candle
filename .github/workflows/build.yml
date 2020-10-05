@@ -1,20 +1,39 @@
 name: Happy Extension 
 
 on: [push, pull_request]
-
 jobs:
-  publish:
+  Build:
     runs-on: ubuntu-latest
+    outputs:
+      should_run_versioning: ${{steps.semantic-release-branch-checker.outputs.match}}
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node.js
+      - name: Check versioning branches
+        uses: ./.github/actions/sematic-release-branch-checker
         uses: actions/setup-node@v1
         with:
           node-version: 12
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        run: npm install 
-      - uses: ./.github/actions/sematic-release-branch-checker
-      - uses: ./.github/actions/semantic-release
+        run: npm install
+  Quality:
+    needs: [Build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: test react app
+        run: npm run test
+  Versioning:
+    needs: [Build, Quality]
+    if: ${{needs.Build.outputs.should_run_versioning}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Versioning
+        uses: ./.github/actions/semantic-release
         with: 
           gh-token: ${{ secrets.GH_TOKEN }}
-        if: ${{steps.semantic-release-branch-checker.outputs.match}}
