@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --open --hot",
     "semantic-release": "semantic-release",
     "flow": "flow",
-    "test": "jest --collect-coverage"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
