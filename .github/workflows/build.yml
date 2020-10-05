@@ -4,8 +4,6 @@ on: [push, pull_request]
 jobs:
   Build:
     runs-on: ubuntu-latest
-    outputs:
-      should_run_: ${{steps.semantic-release-branch-checker.outputs.match}}
     steps:
       - uses: actions/checkout@v2
       - name: Check versioning branches
@@ -19,29 +17,13 @@ jobs:
         with:
           path: |
             **/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - name: Install dependencies
         run: npm install
-  Quality:
-    needs: [Build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
       - name: test react app
         run: npm run test
-  Versioning:
-    needs: [Build, Quality]
-    if: ${{needs.Build.outputs.should_run_}}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - name: Versioning
+        - name: Versioning
         uses: ./.github/actions/semantic-release
+        if: ${{steps.semantic-release-branch-checker.outputs.match}}
         with: 
           gh-token: ${{ secrets.GH_TOKEN }}
