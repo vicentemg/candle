@@ -18,6 +18,8 @@ jobs:
       - name: check branches
         id: semantic-release-branch-checker
         uses: ./.github/actions/semantic-release-branch-checker
+      - name: install dependencies
+        run: echo ${{steps.semantic-release-branch-checker.outputs.match}}
       - name: set up Node.js
         uses: actions/setup-node@v1
         with:
