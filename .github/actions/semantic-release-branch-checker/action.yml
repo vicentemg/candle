@@ -8,7 +8,7 @@ runs:
       shell: bash
       run: |
         BRANCH_NAME=${GITHUB_REF##*/}
-        REGEX_BRANCH='^((master)|(beta))$'
+        REGEX_BRANCH=^((development)|(master)|(beta))$
         if [[ $BRANCH_NAME =~ $REGEX_BRANCH ]]; then
         echo ::set-output name=match::true
         fi
