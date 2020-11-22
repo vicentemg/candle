@@ -1,7 +1,7 @@
 outputs:
-  isvalid: # id of the output
-    description: 'The sum of the inputs'
-    value: ${{ steps.variables.outputs.isvalid }}
+  enabled: # id of the output
+    description: 'say whether the branch is valid or not in order to apply sematic version'
+    value: ${{ steps.variables.outputs.enabled }}
 runs:
   using: "composite"
   steps: 
@@ -9,7 +9,6 @@ runs:
       shell: bash
       run: |
         BRANCH_NAME=${GITHUB_REF##*/}
-        if [[ $BRANCH_NAME =~ ^(development|master|beta)$ ]]; then
-        echo $BRANCH_NAME
-        echo "::set-output name=isvalid::true"
+        if [[ $BRANCH_NAME =~ ^(master|beta)$ ]]; then
+        echo "::set-output name=enabled::true"
         fi
