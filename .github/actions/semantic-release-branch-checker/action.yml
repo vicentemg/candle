@@ -1,5 +1,8 @@
 name: 'Branch Checker'
 description: 'Verfies if it is properly run semantic release in current branch'
+outputs:
+  match:
+    description: 'it value is used to check whether versioning is applied or not'
 runs:
   using: "composite"
   steps: 
