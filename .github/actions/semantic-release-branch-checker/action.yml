@@ -4,11 +4,12 @@ runs:
   using: "composite"
   steps: 
     - name: check branch
-      id: semantic-release-branch-checker
       shell: bash
       run: |
-        echo ${GITHUB_REF##*/}
-        if [[ ${GITHUB_REF##*/} =~ ^((+([0-9])?(.{+([0-9]),x}).x)|(master)|(beta))$ ]]; then
-        echo ${GITHUB_REF##*/}
-        echo ::set-output name=version::SI
+        BRANCH_NAME=${GITHUB_REF##*/}
+        REGEX_BRANCH='^((+([0-9])?(.{+([0-9]),x}).x)|(master)|(beta))$'
+        if [[ $BRANCH_NAME =~ $REGEX_BRANCH ]]; then
+        echo $BRANCH_NAME
+        echo ::set-output name=match::true
+        echo ::set-output name=valid::$(echo 'SI')
         fi
