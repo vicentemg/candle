@@ -1,4 +1,5 @@
 name: 'Branch Checker'
+id: semantic-release-branch-checker
 description: 'Verfies if it is properly run semantic release in current branch'
 runs:
   using: "composite"
@@ -7,9 +8,7 @@ runs:
       shell: bash
       run: |
         BRANCH_NAME=${GITHUB_REF##*/}
-        REGEX_BRANCH='^((+([0-9])?(.{+([0-9]),x}).x)|(master)|(beta))$'
+        REGEX_BRANCH='^((master)|(beta))$'
         if [[ $BRANCH_NAME =~ $REGEX_BRANCH ]]; then
-        echo $BRANCH_NAME
         echo ::set-output name=match::true
-        echo ::set-output name=valid::$(echo 'SI')
         fi
