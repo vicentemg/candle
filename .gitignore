@@ -2,6 +2,6 @@ dist/*
 node_modules/*
 lcov.info
 src/__tests__/__snapshots__
-coverage
+coverage/*
 .vscode
 .npmrc
