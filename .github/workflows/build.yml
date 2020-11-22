@@ -19,7 +19,7 @@ jobs:
         uses: ./.github/actions/semantic-release-branch-checker
         id: semanticrelease
       - name: Saraza
-        run: echo '${{steps.semanticrelease.outputs.match}}'
+        run: echo '${{steps.semanticrelease.outputs.branch}}'
       - name: set up Node.js
         uses: actions/setup-node@v1
         with:
