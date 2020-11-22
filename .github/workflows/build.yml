@@ -44,8 +44,10 @@ jobs:
           name: codecov-nugetmg
           fail_ci_if_error: true
           verbose: true
+      - name: show output
+        run: echo ${{ steps.semantic-release-branch-checker.outputs.match }}
       - name: apply version number
         uses: ./.github/actions/semantic-release
-        if: ${{steps.semantic-release-branch-checker.outputs.match}}
+        if: ${{steps.semantic-release-branch-checker.outputs.match == true}}
         with: 
           gh-token: ${{ secrets.GH_TOKEN }}
