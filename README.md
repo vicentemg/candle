@@ -3,7 +3,7 @@
 
 [![](https://github.com/vicentemg/nugetmg/workflows/Happy%20Extension/badge.svg?branch=development)](https://github.com/vicentemg/nugetmg/actions?query=workflow%3A%22Happy+Extension%22+branch%3Adevelopment) 
 
-[![codecov](https://codecov.io/gh/vicentemg/nugetmg/branch/development/graph/badge.svg?token=MEZ0FKNIUM)](https://codecov.io/gh/vicentemg/nugetmg)
+[![codecov](https://codecov.io/gh/vicentemg/nugetmg/branch/master/graph/badge.svg?token=MEZ0FKNIUM)](https://codecov.io/gh/vicentemg/nugetmg)
 
 
 
