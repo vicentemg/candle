@@ -1,5 +1,4 @@
 name: 'Branch Checker'
-id: semantic-release-branch-checker
 description: 'Verfies if it is properly run semantic release in current branch'
 runs:
   using: "composite"
@@ -10,5 +9,5 @@ runs:
         BRANCH_NAME=${GITHUB_REF##*/}
         if [[ $BRANCH_NAME =~ ^(development|master|beta)$ ]]; then
         echo $BRANCH_NAME
-        echo ::set-output name=match::true
+        echo "##[set-output name=version;]$(echo true)"
         fi
