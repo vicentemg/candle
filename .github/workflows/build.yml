@@ -19,7 +19,7 @@ jobs:
         name: check branches
         uses: ./.github/actions/semantic-release-branch-checker
       - id: step2
-        run: echo ${{steps.semanticrelease.outputs.match}}
+        run: echo ${{steps.semanticrelease.outputs.isvalid}}
       - name: set up Node.js
         uses: actions/setup-node@v1
         with:
