@@ -16,6 +16,7 @@ jobs:
       - name: checkout source code
         uses: actions/checkout@v2
       - name: check branches
+        id: semantic-release-branch-checker
         uses: ./.github/actions/semantic-release-branch-checker
       - name: set up Node.js
         uses: actions/setup-node@v1
@@ -45,9 +46,9 @@ jobs:
           fail_ci_if_error: true
           verbose: true
       - name: show output
-        run: echo ${{ steps.semantic-release-branch-checker.outputs.match }}
+        run: echo ${{ steps.semantic-release-branch-checker.outputs.version}}
       - name: apply version number
         uses: ./.github/actions/semantic-release
-        if: ${{steps.semantic-release-branch-checker.outputs.match == true}}
+        if: ${{steps.semantic-release-branch-checker.outputs.version =~ ^((SI))$}}
         with: 
           gh-token: ${{ secrets.GH_TOKEN }}

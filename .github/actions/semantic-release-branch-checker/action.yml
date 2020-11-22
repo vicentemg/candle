@@ -1,8 +1,5 @@
 name: 'Branch Checker'
 description: 'Verfies if it is properly run semantic release in current branch'
-outputs:
-  match:
-    description: 'it value is used to check whether versioning is applied or not'
 runs:
   using: "composite"
   steps: 
@@ -13,5 +10,5 @@ runs:
         echo ${GITHUB_REF##*/}
         if [[ ${GITHUB_REF##*/} =~ ^((+([0-9])?(.{+([0-9]),x}).x)|(master)|(beta))$ ]]; then
         echo ${GITHUB_REF##*/}
-        echo ::set-output name=match::true
+        echo ::set-output name=version::SI
         fi
