@@ -16,6 +16,7 @@ jobs:
       - name: checkout source code
         uses: actions/checkout@v2
       - name: check branches
+        id: semantic-release-branch-checker
         uses: ./.github/actions/semantic-release-branch-checker
       - name: set up Node.js
         uses: actions/setup-node@v1
