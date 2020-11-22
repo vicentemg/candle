@@ -7,8 +7,8 @@ on:
       - development
   pull_request:
     branches:
-      - feature/*
-      - hotfix/*
+      - 'feature/*'
+      - 'hotfix/*'
 jobs:
   Build:
     runs-on: ubuntu-latest
