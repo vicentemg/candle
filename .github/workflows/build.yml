@@ -15,7 +15,8 @@ jobs:
     steps:
       - name: checkout source code
         uses: actions/checkout@v2
-      - name: check branches
+      - name: verify semantic release
+        id: semantic-release
         uses: ./.github/actions/semantic-release-branch-checker
       - name: set up Node.js
         uses: actions/setup-node@v1
@@ -46,6 +47,6 @@ jobs:
           verbose: true
       - name: apply version number
         uses: ./.github/actions/semantic-release
-        if: ${{steps.semantic-release-branch-checker.outputs.match}}
+        if: ${{ steps.semantic-release.outputs.enabled }}
         with: 
           gh-token: ${{ secrets.GH_TOKEN }}

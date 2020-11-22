@@ -1,14 +1,14 @@
-name: 'Branch Checker'
-id: semantic-release-branch-checker
-description: 'Verfies if it is properly run semantic release in current branch'
+outputs:
+  enabled: # id of the output
+    description: 'say whether the branch is valid or not in order to apply sematic version'
+    value: ${{ steps.variables.outputs.enabled }}
 runs:
   using: "composite"
   steps: 
-    - name: check branch
+    - id: variables
       shell: bash
       run: |
         BRANCH_NAME=${GITHUB_REF##*/}
-        REGEX_BRANCH='^((master)|(beta))$'
-        if [[ $BRANCH_NAME =~ $REGEX_BRANCH ]]; then
-        echo ::set-output name=match::true
+        if [[ $BRANCH_NAME =~ ^(master|beta)$ ]]; then
+        echo "::set-output name=enabled::true"
         fi
