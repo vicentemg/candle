@@ -4,3 +4,4 @@ lcov.info
 src/__tests__/__snapshots__
 coverage
 .vscode
+.npmrc
