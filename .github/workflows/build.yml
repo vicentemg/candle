@@ -20,7 +20,7 @@ jobs:
         id: semanticrelease
       - id: step1
         run: echo "::set-output name=test::hello"
-      - id: step1
+      - id: step2
         run: echo {{steps.step1.outputs.test}}
       - name: set up Node.js
         uses: actions/setup-node@v1
