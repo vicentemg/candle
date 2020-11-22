@@ -1,5 +1,8 @@
 name: 'Branch Checker'
 description: 'Verfies if it is properly run semantic release in current branch'
+outputs:
+  match: # id of the output
+    description: 'The sum of the inputs'
 runs:
   using: "composite"
   steps: 
@@ -7,7 +10,6 @@ runs:
       shell: bash
       run: |
         BRANCH_NAME=${GITHUB_REF##*/}
-        echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         if [[ $BRANCH_NAME =~ ^(development|master|beta)$ ]]; then
         echo $BRANCH_NAME
         echo "::set-output name=match::$(echo $BRANCH_NAME)"

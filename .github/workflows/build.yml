@@ -15,13 +15,11 @@ jobs:
     steps:
       - name: checkout source code
         uses: actions/checkout@v2
-      - name: check branches
+      - id: semanticrelease
+        name: check branches
         uses: ./.github/actions/semantic-release-branch-checker
-        id: semanticrelease
-      - id: step1
-        run: echo "::set-output name=test::hello"
       - id: step2
-        run: echo ${{steps.step1.outputs.test}}
+        run: echo ${{steps.semanticrelease.outputs.match}}
       - name: set up Node.js
         uses: actions/setup-node@v1
         with:
