@@ -1,0 +1,12 @@
+name: 'Branch Checker'
+description: 'Verfies if it is properly run semantic release in current branch'
+runs:
+  using: "composite"
+  steps: 
+    - name: check branch
+      id: semantic-release-branch-checker
+      shell: bash
+      run: |
+        if [[ ${GITHUB_REF##*/} =~ ^((+([0-9])?(.{+([0-9]),x}).x)|(master)|(beta))$ ]]; then
+        echo ::set-output name=match::true
+        fi

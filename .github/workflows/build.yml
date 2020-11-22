@@ -1,22 +1,51 @@
-name: Semantic release 
+name: Happy Extension 
 
-on:
+on: 
   push:
     branches:
       - master
+      - development
+  pull_request:
+    branches:
+      - 'development'
+      - 'master'
 jobs:
-  publish:
+  Build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Node.js
+      - name: checkout source code
+        uses: actions/checkout@v2
+      - name: check branches
+        uses: ./.github/actions/sematic-release-branch-checker
+      - name: set up Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Install dependencies
-        run: npm install 
-      - name: Semantic release
+      - name: check node modules cache
+        uses: actions/cache@v2
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npx semantic-release
-        
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: install dependencies
+        run: npm install
+      - name: test react app
+        run: npm run test -- --collect-coverage --updateSnapshot
+      - name: collect code coverage
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage/clover.xml
+          flags: unittests 
+          name: codecov-nugetmg
+          fail_ci_if_error: true
+          verbose: true
+      - name: apply version number
+        uses: ./.github/actions/semantic-release
+        if: ${{steps.semantic-release-branch-checker.outputs.match}}
+        with: 
+          gh-token: ${{ secrets.GH_TOKEN }}

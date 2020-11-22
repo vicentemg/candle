@@ -1,0 +1,15 @@
+name: 'Semanti Release'
+description: 'Automates package release: detrmining the next version number'
+inputs: 
+  gh-token: 
+    description: token git hub
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: semantic release 
+      id: semantic-release
+      shell: bash
+      env: 
+        GITHUB_TOKEN: ${{ inputs.gh-token }}
+      run: npx semantic-release
