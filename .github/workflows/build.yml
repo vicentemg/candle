@@ -18,8 +18,10 @@ jobs:
       - name: check branches
         uses: ./.github/actions/semantic-release-branch-checker
         id: semanticrelease
-      - name: Saraza
-        run: echo '${{steps.semanticrelease.outputs.branch}}'
+      - id: step1
+        run: echo "::set-output name=test::hello"
+      - id: step1
+        run: echo {{steps.step1.outputs.test}}
       - name: set up Node.js
         uses: actions/setup-node@v1
         with:
