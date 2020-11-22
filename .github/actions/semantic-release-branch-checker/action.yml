@@ -9,5 +9,5 @@ runs:
         BRANCH_NAME=${GITHUB_REF##*/}
         if [[ $BRANCH_NAME =~ ^(development|master|beta)$ ]]; then
         echo $BRANCH_NAME
-        echo "##[set-output name=match;]$(echo true)"
+        echo "::set-output name=match::$(echo $BRANCH_NAME)"
         fi
