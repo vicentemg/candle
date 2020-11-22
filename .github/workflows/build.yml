@@ -47,6 +47,6 @@ jobs:
           verbose: true
       - name: apply version number
         uses: ./.github/actions/semantic-release
-        if: ${{steps.semantic-release-branch-checker.outputs.match}}
+        if: ${{steps.semantic-release-branch-checker.outputs.match=='true'}}
         with: 
           gh-token: ${{ secrets.GH_TOKEN }}
