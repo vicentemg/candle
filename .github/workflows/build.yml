@@ -16,10 +16,10 @@ jobs:
       - name: checkout source code
         uses: actions/checkout@v2
       - name: check branches
-        id: semantic-release-branch-checker
         uses: ./.github/actions/semantic-release-branch-checker
+        id: semanticrelease
       - name: Saraza
-        run: echo ${{steps.semantic-release-branch-checker.outputs.match}}
+        run: echo '${{steps.semanticrelease.outputs.match}}'
       - name: set up Node.js
         uses: actions/setup-node@v1
         with:
