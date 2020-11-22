@@ -5,14 +5,15 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Check versioning branches
+      - name: Downloading source code
+        uses: actions/checkout@v2
+      - name: Checking branches
         uses: ./.github/actions/sematic-release-branch-checker
-      - name: Setup Node.js
+      - name: Setting up Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Cache node modules
+      - name: Checking node modules cache
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
@@ -23,19 +24,19 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: Install dependencies
+      - name: Installing dependencies
         run: npm install
-      - name: test react app
+      - name: testing react app
         run: npm run test -- --collect-coverage --updateSnapshot
-      - name: collecting code coverage
+      - name: collectiong code coverage
         uses: codecov/codecov-action@v1
         with:
           file: ./coverage/clover.xml
           flags: unittests 
-          name: codecov-nugetmg # optional
-          fail_ci_if_error: true # optional (default = false)
-          verbose: true # optional (default = false)
-      - name: Versioning
+          name: codecov-nugetmg
+          fail_ci_if_error: true
+          verbose: true
+      - name: Applying version number
         uses: ./.github/actions/semantic-release
         if: ${{steps.semantic-release-branch-checker.outputs.match}}
         with: 
