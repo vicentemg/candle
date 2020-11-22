@@ -3,10 +3,12 @@ description: 'Verfies if it is properly run semantic release in current branch'
 outputs:
   match: # id of the output
     description: 'The sum of the inputs'
+    value: ${{ steps.setting-branch-name.match }}
 runs:
   using: "composite"
   steps: 
     - name: check branch
+      id: setting-branch-name
       shell: bash
       run: |
         BRANCH_NAME=${GITHUB_REF##*/}
