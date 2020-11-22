@@ -21,7 +21,7 @@ jobs:
       - id: step1
         run: echo "::set-output name=test::hello"
       - id: step2
-        run: echo {{steps.step1.outputs.test}}
+        run: echo ${{steps.step1.outputs.test}}
       - name: set up Node.js
         uses: actions/setup-node@v1
         with:
